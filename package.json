@@ -1,7 +1,7 @@
 {
 	"name": "DogSpot",
 	"version": "1.0.0",
-	"description": "Popfame backend",
+	"description": "Dogspot backend",
 	"main": "app.js",
 	"author": "Khan Muhammad",
 	"license": "MIT",
