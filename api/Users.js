@@ -45,6 +45,7 @@ class Users {
 				});
 				this.login(req, res);
 			} catch (e) {
+				console.log("e: ", e);
 				let errors = e.errors.map((err) => {
 					return {
 						[err.path.replace("_UNIQUE", "")]: err.message.replace(
