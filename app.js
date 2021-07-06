@@ -72,6 +72,10 @@ app.post("/api/google_login", (req, res) => {
 	req.db = db;
 	api.users.google_login(req, res);
 });
+app.post("/api/facebook_login", (req, res) => {
+	req.db = db;
+	api.users.facebook_login(req, res);
+});
 
 app.post("/api/user/:method?", authenticate_token, (req, res) => {
 	req.db = db;

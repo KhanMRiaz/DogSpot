@@ -107,7 +107,6 @@ class Users {
 	};
 
 	google_login = async (req, res) => {
-		console.log("INSIDE GOOGLE LOGIN: ", req);
 		let model = await this.get_model(req.db);
 		const { google_token } = req.body;
 		let user = await model.findOne({
@@ -120,7 +119,38 @@ class Users {
 			res.send({
 				errors: [
 					{
-						email: "No account is associated with this token",
+						email: "No account is associated with this google account",
+					},
+				],
+			});
+			return;
+		}
+		let token = jwt.sign(
+			{
+				user,
+			},
+			"secret",
+			{ expiresIn: 3 * 24 * 3600 }
+		);
+		res.status(200);
+		res.send({ token, user });
+		return;
+	};
+
+	facebook_login = async (req, res) => {
+		let model = await this.get_model(req.db);
+		const { facebook_token } = req.body;
+		let user = await model.findOne({
+			where: {
+				facebook_token: facebook_token,
+			},
+		});
+		if (_.isEmpty(user)) {
+			res.status(400);
+			res.send({
+				errors: [
+					{
+						email: "No account is associated with this facebook account",
 					},
 				],
 			});
