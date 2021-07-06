@@ -114,6 +114,7 @@ class Users {
 				google_token: google_token,
 			},
 		});
+		console.log("USER: ", user);
 		if (_.isEmpty(user)) {
 			res.status(400);
 			res.send({
