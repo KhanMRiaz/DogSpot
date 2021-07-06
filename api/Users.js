@@ -107,6 +107,7 @@ class Users {
 	};
 
 	google_login = async (req, res) => {
+		console.log("INSIDE GOOGLE LOGIN: ", req);
 		let model = await this.get_model(req.db);
 		const { google_token } = req.body;
 		let user = await model.findOne({
@@ -114,7 +115,6 @@ class Users {
 				google_token: google_token,
 			},
 		});
-		console.log("USER: ", user);
 		if (_.isEmpty(user)) {
 			res.status(400);
 			res.send({
