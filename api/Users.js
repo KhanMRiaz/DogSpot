@@ -39,6 +39,7 @@ class Users {
 			req.body.password = hash(req.body.password);
 			req.body.email = req.body.email.toLowerCase();
 			let model = await this.get_model(req.db);
+			console.log("MODEL: ", model);
 			try {
 				await model.create(req.body, {
 					whereisNewRecord: true,
